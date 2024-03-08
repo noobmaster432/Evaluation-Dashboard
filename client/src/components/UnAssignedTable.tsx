@@ -28,7 +28,7 @@ const UnAssignedTable = () => {
     const [student, setStudent] = useState([]);
     const { toast } = useToast();
 
-    const addStudent = (studentId: any, mentorId: any) => {
+    const addStudent = (studentId: string, mentorId: string) => {
         assignStudent(mentorId, studentId).then((res) => {
             console.log(res);
             const data = {

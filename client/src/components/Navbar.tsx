@@ -1,6 +1,5 @@
 import React from 'react'
 import { BellIcon } from "@heroicons/react/24/outline"
-import { UserIcon } from "@heroicons/react/24/solid"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Navbar = () => {

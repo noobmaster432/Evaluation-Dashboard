@@ -18,7 +18,7 @@ import { useState } from "react";
 import { unAssignStudent, updateStudent } from "@/lib/data";
 import { useToast } from "@/components/ui/use-toast";
 
-const IndividualStudent = ({ s, i }: { s: any; i: any }) => {
+const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
   const { toast } = useToast();
   const [mark, setMark] = useState({
     ideation: s?.marks[0].score,
@@ -26,7 +26,7 @@ const IndividualStudent = ({ s, i }: { s: any; i: any }) => {
     pitch: s?.marks[2].score,
   });
 
-  const editStudent = (studentId: any, mark: any) => {
+  const editStudent = (studentId: string, mark: any) => {
     const data = {
       studentId: studentId,
       marks: [
@@ -60,7 +60,7 @@ const IndividualStudent = ({ s, i }: { s: any; i: any }) => {
       });
   };
 
-  const removeStudent = (mentorId: any, studentId: any) => {
+  const removeStudent = (mentorId: string, studentId: string) => {
     unAssignStudent(mentorId, studentId)
       .then((res) => {
         console.log(res);
