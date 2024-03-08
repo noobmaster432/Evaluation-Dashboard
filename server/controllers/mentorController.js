@@ -92,7 +92,7 @@ exports.unassignStudentFromMentor = async (req, res) => {
 
 // Filter students by marks assigned to a specific mentor
 exports.getStudentsWithAssignedMarks = async (req, res) => {
-  const { mentorId } = req.body;
+  const { mentorId } = req.params;
 
   try {
     // Check if mentor exists

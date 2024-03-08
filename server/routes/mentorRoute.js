@@ -8,7 +8,7 @@ router.get('/', mentorController.getAllMentors);
 router.post('/', mentorController.addMentor);
 
 // Filter students by marks assigned
-router.get('/students/assigned', mentorController.getStudentsWithAssignedMarks);
+router.get('/students/assigned/:mentorId', mentorController.getStudentsWithAssignedMarks);
 
 // Filter students by marks not assigned
 router.get('/students/unassigned', mentorController.getStudentsWithoutAssignedMarks);
