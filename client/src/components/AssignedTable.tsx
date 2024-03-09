@@ -13,14 +13,14 @@ import { useEffect, useState } from "react";
 import { getAssigned } from "@/lib/data";
 import IndividualStudent from "./IndividualStudent";
 
-const AssignedTable = () => {
+const AssignedTable = ({ Id }: { Id: string }) => {
   const [student, setStudent] = useState([]);
 
   useEffect(() => {
-    getAssigned("65ea13180923e9ef0175705f").then((res) => {
+    getAssigned(Id).then((res) => {
       setStudent(res?.data);
     });
-  }, [student]);
+  }, [student, Id]);
 
   return (
     <div>
@@ -42,7 +42,7 @@ const AssignedTable = () => {
         </TableHeader>
         <TableBody>
           {student?.map((s: any, i) => {
-            return <IndividualStudent key={i} s={s} i={i} />;
+            return <IndividualStudent key={i} s={s} i={i} Id={Id} />;
           })}
         </TableBody>
       </Table>

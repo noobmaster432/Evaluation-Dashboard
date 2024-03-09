@@ -18,7 +18,7 @@ import { useState } from "react";
 import { unAssignStudent, updateStudent } from "@/lib/data";
 import { useToast } from "@/components/ui/use-toast";
 
-const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
+const IndividualStudent = ({ s, i, Id }: { s: any; i: number; Id: string }) => {
   const { toast } = useToast();
   const [change, setChange] = useState(false);
   const [mark, setMark] = useState({
@@ -94,7 +94,10 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
         <Dialog>
           {!change ? (
             <DialogTrigger>
-              <Button disabled={change} className="bg-blue-500 hover:bg-blue-600">
+              <Button
+                disabled={change}
+                className="bg-blue-500 hover:bg-blue-600"
+              >
                 Edit
               </Button>
             </DialogTrigger>
@@ -182,8 +185,8 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-        </TableCell>
-        <TableCell>
+      </TableCell>
+      <TableCell>
         <Dialog>
           {!change ? (
             <DialogTrigger>
@@ -207,7 +210,7 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
               <Button
                 type="submit"
                 onClick={() =>
-                  removeStudent("65ea13180923e9ef0175705f", s?._id)
+                  removeStudent(Id, s?._id)
                 }
               >
                 Remove
@@ -215,8 +218,8 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
-        </TableCell>
-        <TableCell>
+      </TableCell>
+      <TableCell>
         <Dialog>
           <DialogTrigger>
             <Button className="bg-green-500 hover:bg-green-600">Submit</Button>

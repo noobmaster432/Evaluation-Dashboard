@@ -24,56 +24,60 @@ import { useEffect, useState } from "react";
 import { addMarks, assignStudent, getUnAssigned } from "@/lib/data";
 import { useToast } from "@/components/ui/use-toast";
 
-const UnAssignedTable = () => {
-    const [student, setStudent] = useState([]);
-    const { toast } = useToast();
+const UnAssignedTable = ({ Id }: { Id: string }) => {
+  const [student, setStudent] = useState([]);
+  const { toast } = useToast();
 
-    const addStudent = (studentId: string, mentorId: string) => {
-        assignStudent(mentorId, studentId).then((res) => {
-            console.log(res);
-            const data = {
-                studentId: studentId,
-                marks: [
-                    {
-                        parameter: "Ideation",
-                        score: 0,
-                    },
-                    {
-                        parameter: "Execution",
-                        score: 0,
-                    },
-                    {
-                        parameter: "Pitch",
-                        score: 0,
-                    },
-                ],
-            }
-            addMarks(data).then((marks) => {
-                console.log(marks);
-                toast({
-                  description: "Student added successfully",
-                });
-            }).catch((err) => {
-                console.error(err);
-                toast({
-                    title: "Error adding student",
-                    description: err.message,
-                });
-            })
-        }).catch((err) => {
+  const addStudent = (studentId: string, mentorId: string) => {
+    assignStudent(mentorId, studentId)
+      .then((res) => {
+        console.log(res);
+        const data = {
+          studentId: studentId,
+          marks: [
+            {
+              parameter: "Ideation",
+              score: 0,
+            },
+            {
+              parameter: "Execution",
+              score: 0,
+            },
+            {
+              parameter: "Pitch",
+              score: 0,
+            },
+          ],
+        };
+        addMarks(data)
+          .then((marks) => {
+            console.log(marks);
+            toast({
+              description: "Student added successfully",
+            });
+          })
+          .catch((err) => {
             console.error(err);
             toast({
-                title: "Error adding student",
-                description: err.message,
+              title: "Error adding student",
+              description: err.message,
             });
-        })
-    }
-
-    useEffect(() => {
-      getUnAssigned().then((res) => {
-        setStudent(res?.data);
+          });
+      })
+      .catch((err) => {
+        console.error(err);
+        toast({
+          title: "Error adding student",
+          description: err.message,
+        });
       });
-    }, [student]);
+  };
+
+  useEffect(() => {
+    getUnAssigned().then((res) => {
+      setStudent(res?.data);
+    });
+  }, [student]);
 
   return (
     <div>
@@ -118,7 +122,7 @@ const UnAssignedTable = () => {
                       <Button
                         type="submit"
                         onClick={() =>
-                          addStudent(s?._id, "65ea13180923e9ef0175705f")
+                          addStudent(s?._id, Id)
                         }
                       >
                         Add
