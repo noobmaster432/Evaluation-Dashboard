@@ -3,7 +3,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableHead,
   TableHeader,
   TableRow,
@@ -12,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { getAssigned } from "@/lib/data";
 import IndividualStudent from "./IndividualStudent";
+import Topbar from "./Topbar";
 
 const AssignedTable = ({ Id }: { Id: string }) => {
   const [student, setStudent] = useState([]);
@@ -24,8 +24,8 @@ const AssignedTable = ({ Id }: { Id: string }) => {
 
   return (
     <div>
+      <Topbar students={student} />
       <Table>
-        <TableCaption>A list of assigned students.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">S.No.</TableHead>

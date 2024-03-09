@@ -207,12 +207,7 @@ const IndividualStudent = ({ s, i, Id }: { s: any; i: number; Id: string }) => {
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
-              <Button
-                type="submit"
-                onClick={() =>
-                  removeStudent(Id, s?._id)
-                }
-              >
+              <Button type="submit" onClick={() => removeStudent(Id, s?._id)}>
                 Remove
               </Button>
             </DialogFooter>

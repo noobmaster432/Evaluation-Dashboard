@@ -3,7 +3,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -82,7 +81,6 @@ const UnAssignedTable = ({ Id }: { Id: string }) => {
   return (
     <div>
       <Table>
-        <TableCaption>A list of unassigned students.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">S.No.</TableHead>
