@@ -36,6 +36,8 @@ const AssignedTable = () => {
             <TableHead>Pitch</TableHead>
             <TableHead>Total Marks</TableHead>
             <TableHead></TableHead>
+            <TableHead></TableHead>
+            <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

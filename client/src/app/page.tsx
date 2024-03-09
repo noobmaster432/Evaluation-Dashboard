@@ -6,12 +6,19 @@ import UnAssignedTable from "@/components/UnAssignedTable";
 
 export default function Home() {
   return (
-    <div className="gap-4">
+    <div>
       <Navbar />
-      <Tabs defaultValue="assigned" className="w-full px-24 py-10">
+      <Tabs
+        defaultValue="assigned"
+        className="w-full px-2 sm:px-8 md:px-24 py-10"
+      >
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="assigned">Assigned Students</TabsTrigger>
-          <TabsTrigger value="unassigned">UnAssigned Students</TabsTrigger>
+          <TabsTrigger value="assigned" className=" text-xs sm:text-sm">
+            Assigned Students
+          </TabsTrigger>
+          <TabsTrigger value="unassigned" className=" text-xs sm:text-sm">
+            UnAssigned Students
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="assigned">
           <AssignedTable />

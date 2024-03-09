@@ -182,6 +182,8 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        </TableCell>
+        <TableCell>
         <Dialog>
           {!change ? (
             <DialogTrigger>
@@ -213,6 +215,8 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        </TableCell>
+        <TableCell>
         <Dialog>
           <DialogTrigger>
             <Button className="bg-green-500 hover:bg-green-600">Submit</Button>
