@@ -32,7 +32,10 @@ The Evaluation Dashboard App is a mentor-view solution designed for the evaluati
 ![Editing Assigned Student's marks](https://github.com/noobmaster432/Evaluation-Dashboard/assets/103204431/7d4745d8-27c1-4722-a2eb-aa0ef24d09fe)
 
 #### Submitting Assigned Student Data
-![Submitting Assigned Student Data](https://github.com/noobmaster432/Evaluation-Dashboard/assets/103204431/55d14797-d343-4480-b971-d92e07a226ac)
+![Submitting Assigned Student Data](https://github.com/noobmaster432/Evaluation-Dashboard/assets/103204431/865718b2-a7c4-48ec-a129-5e4e9d941155)
+
+#### Once submitted, Student's Data becomes unmutable
+![Submitted Data](https://github.com/noobmaster432/Evaluation-Dashboard/assets/103204431/89fba07d-55e7-4041-b835-51491ff48db3)
 
 #### UnAssigned Students
 ![UnAssigned Students](https://github.com/noobmaster432/Evaluation-Dashboard/assets/103204431/13306d5d-593c-41d5-84db-4f2cb2b6161a)
