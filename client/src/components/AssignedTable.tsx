@@ -3,10 +3,13 @@
 import {
   Table,
   TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { useEffect, useState } from "react";
 import { getAssigned } from "@/lib/data";
@@ -15,12 +18,18 @@ import Topbar from "./Topbar";
 
 const AssignedTable = ({ Id }: { Id: string }) => {
   const [student, setStudent] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getAssigned(Id).then((res) => {
-      setStudent(res?.data);
-    });
-  }, [student, Id]);
+    setIsLoading(true);
+    getAssigned(Id)
+      .then((res) => {
+        setStudent(res?.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [Id]);
 
   return (
     <div>
@@ -40,11 +49,25 @@ const AssignedTable = ({ Id }: { Id: string }) => {
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {student?.map((s: any, i) => {
-            return <IndividualStudent key={i} s={s} i={i} Id={Id} />;
-          })}
-        </TableBody>
+        {isLoading ? (
+          <TableBody>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <TableRow key={i}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((j) => (
+                  <TableCell key={j} className="space-y-2">
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        ) : (
+          <TableBody>
+            {student?.map((s: any, i) => {
+              return <IndividualStudent key={i} s={s} i={i} Id={Id} />;
+            })}
+          </TableBody>
+        )}
       </Table>
     </div>
   );

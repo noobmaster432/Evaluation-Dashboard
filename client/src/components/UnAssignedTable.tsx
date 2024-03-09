@@ -18,6 +18,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { addMarks, assignStudent, getUnAssigned } from "@/lib/data";
@@ -25,6 +27,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 const UnAssignedTable = ({ Id }: { Id: string }) => {
   const [student, setStudent] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const addStudent = (studentId: string, mentorId: string) => {
@@ -73,10 +76,13 @@ const UnAssignedTable = ({ Id }: { Id: string }) => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getUnAssigned().then((res) => {
       setStudent(res?.data);
-    });
-  }, [student]);
+    }).finally(() => {
+      setIsLoading(false);
+    })
+  }, []);
 
   return (
     <div>
@@ -90,48 +96,60 @@ const UnAssignedTable = ({ Id }: { Id: string }) => {
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
-          {student.map((s: any, i) => (
-            <TableRow key={i}>
-              <TableCell className="font-medium">{i + 1}</TableCell>
-              <TableCell>{s?.name || "John Doe"}</TableCell>
-              <TableCell>{(s?.name).split(" ")[0]}@gmail.com</TableCell>
-              <TableCell>
-                {" "}
-                <p className="px-2 py-1 rounded-2xl bg-amber-500 cursor-pointer w-fit text-xs text-white">
-                  UnAssigned
-                </p>
-              </TableCell>
-              <TableCell>
-                <Dialog>
-                  <DialogTrigger>
-                    <Button className="bg-indigo-500 hover:bg-indigo-600">
-                      Add
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Are you absolutely sure?</DialogTitle>
-                      <DialogDescription>
-                        This will add the respective student to your assigned.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter>
-                      <Button
-                        type="submit"
-                        onClick={() =>
-                          addStudent(s?._id, Id)
-                        }
-                      >
+        {isLoading ? (
+          <TableBody>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <TableRow key={i}>
+                {[1, 2, 3, 4, 5].map((j) => (
+                  <TableCell key={j} className="space-y-2">
+                    <Skeleton className="h-4 w-full" />
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        ) : (
+          <TableBody>
+            {student.map((s: any, i) => (
+              <TableRow key={i}>
+                <TableCell className="font-medium">{i + 1}</TableCell>
+                <TableCell>{s?.name || "John Doe"}</TableCell>
+                <TableCell>{(s?.name).split(" ")[0]}@gmail.com</TableCell>
+                <TableCell>
+                  {" "}
+                  <p className="px-2 py-1 rounded-2xl bg-amber-500 cursor-pointer w-fit text-xs text-white">
+                    UnAssigned
+                  </p>
+                </TableCell>
+                <TableCell>
+                  <Dialog>
+                    <DialogTrigger>
+                      <Button className="bg-indigo-500 hover:bg-indigo-600">
                         Add
                       </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                        <DialogDescription>
+                          This will add the respective student to your assigned.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <DialogFooter>
+                        <Button
+                          type="submit"
+                          onClick={() => addStudent(s?._id, Id)}
+                        >
+                          Add
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        )}
       </Table>
     </div>
   );
