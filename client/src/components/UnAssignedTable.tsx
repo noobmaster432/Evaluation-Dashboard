@@ -103,7 +103,7 @@ const UnAssignedTable = () => {
               <TableCell>
                 <Dialog>
                   <DialogTrigger>
-                    <Button className="bg-green-500 hover:bg-green-600">
+                    <Button className="bg-indigo-500 hover:bg-indigo-600">
                       Add
                     </Button>
                   </DialogTrigger>

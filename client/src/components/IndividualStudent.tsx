@@ -20,6 +20,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
   const { toast } = useToast();
+  const [change, setChange] = useState(false);
   const [mark, setMark] = useState({
     ideation: s?.marks[0].score,
     execution: s?.marks[1].score,
@@ -91,9 +92,17 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
       </TableCell>
       <TableCell className="space-x-4">
         <Dialog>
-          <DialogTrigger>
-            <Button className="bg-blue-500 hover:bg-blue-600">Edit</Button>
-          </DialogTrigger>
+          {!change ? (
+            <DialogTrigger>
+              <Button disabled={change} className="bg-blue-500 hover:bg-blue-600">
+                Edit
+              </Button>
+            </DialogTrigger>
+          ) : (
+            <Button disabled={change} className="bg-blue-500 hover:bg-blue-600">
+              Edit
+            </Button>
+          )}
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Edit profile</DialogTitle>
@@ -174,9 +183,17 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
           </DialogContent>
         </Dialog>
         <Dialog>
-          <DialogTrigger>
-            <Button className="bg-red-500 hover:bg-red-600">Remove</Button>
-          </DialogTrigger>
+          {!change ? (
+            <DialogTrigger>
+              <Button disabled={change} className="bg-red-500 hover:bg-red-600">
+                Remove
+              </Button>
+            </DialogTrigger>
+          ) : (
+            <Button disabled={change} className="bg-red-500 hover:bg-red-600">
+              Remove
+            </Button>
+          )}
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
@@ -192,6 +209,33 @@ const IndividualStudent = ({ s, i }: { s: any; i: number }) => {
                 }
               >
                 Remove
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+        <Dialog>
+          <DialogTrigger>
+            <Button className="bg-green-500 hover:bg-green-600">Submit</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will submit the
+                student&apos;s data and no further changes will be permitted.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <Button
+                type="submit"
+                onClick={() => {
+                  setChange(true);
+                  toast({
+                    description: "Student Data Submitted successfully",
+                  });
+                }}
+              >
+                Submit
               </Button>
             </DialogFooter>
           </DialogContent>
