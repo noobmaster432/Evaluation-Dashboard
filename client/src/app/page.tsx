@@ -35,8 +35,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <Card className="w-1/3">
+    <div className="flex flex-col px-6 space-y-8 items-center justify-center h-screen bg-slate-50">
+      <h1 className="text-2xl text-center sm:text-3xl font-semibold">Evaluation Dashboard: Mentor View</h1>
+      <Card className="w-full md:w-2/3 lg:w-1/3 shadow-md">
         <CardHeader>
           <CardTitle>Select Mentor</CardTitle>
           <CardDescription>
