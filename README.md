@@ -14,6 +14,7 @@ The Evaluation Dashboard App is a mentor-view solution designed for the evaluati
 - Mentors should be able to edit or remove assigned students and modify assigned marks.
 - There should be a final submit functionality to lock the marks, making them uneditable.
 - Mentors should be able to view all students and their assigned marks, with filters for students with and without assigned marks.
+- Mentors should be able to download CSV of all the Students Data.
 
 ## Technologies Used
 
