@@ -34,7 +34,7 @@ const AssignedTable = ({ Id }: { Id: string }) => {
             <TableHead>Ideation</TableHead>
             <TableHead>Execution</TableHead>
             <TableHead>Pitch</TableHead>
-            <TableHead>Total Marks</TableHead>
+            <TableHead>Total</TableHead>
             <TableHead></TableHead>
             <TableHead></TableHead>
             <TableHead></TableHead>
